@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="header-background">
-        <img src="../assets/img/Spotify.png" alt="">
+        <div class="header-container">
+            <img src="../assets/img/Spotify.png" alt="">
+        </div>
     </div>
   </div>
 </template>
@@ -15,7 +17,13 @@ export default {
 <style lang="scss" scoped>
     .header-background{
         background-color: #2e3a46;
-        padding: 0.7rem 1rem;
+    }
+    .header-container{
+        width: 98%;
+        margin: 0 auto;
+        height: 70px;
+        display: flex;
+        align-items: center;
     }
     img{
         height: 50px;
