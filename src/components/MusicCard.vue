@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="cards-container">
-        <div class="card">
-            <div class="card-image">
-                ciao
-            </div>
-            <div class="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsa eveniet, aut vero consequatur numquam recusandae perferendis ducimus molestias, ipsam debitis dicta iusto animi esse quas fugit reiciendis laboriosam temporibus.
-            </div>
+  <div class="card-1">
+    <div class="card">
+        <div class="card-image">
+            <img :src="cover" alt="Album Cover">
+        </div>
+        <div class="card-text">
+            <h2>{{ title }}</h2>
+            <p>{{ author }}</p>
+            <p>{{ date }}</p>
         </div>
     </div>
   </div>
@@ -16,21 +16,21 @@
 <script>
     export default {
         name: "MusicCard",
+        props: {
+            author: String,
+            cover: String,
+            title: String,
+            date: String
+        },
     }
 </script>
 
 <style scoped lang="scss">
-    .cards-container{
-        width: 97%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    .card-1{
+        width: calc(90% / 5);
     }
     .card{
-        width: calc(86% / 6);
         height: calc(100% / 2);
-        margin-bottom: 3rem;
     }
     .card-image{
         width: 100%;
@@ -44,5 +44,7 @@
     .card-text{
         height: 30%;
         padding: 1rem 0;
+        color: grey;
+        text-align: center;
     }
 </style>
