@@ -1,12 +1,12 @@
 <template>
   <div class="select-alignments">
-    <select v-model="musicGenre" name="genre" id="genre">
+    <select @change="$emit('filter', musicGenre)" v-model="musicGenre" name="genre" id="genre">
+        <option value="All">All</option>
         <option value="Rock">Rock</option>
         <option value="Pop">Pop</option>
         <option value="Jazz">Jazz</option>
         <option value="Metal">Metal</option>
     </select>
-    <button @click="$emit('filter', musicGenre)">Filter</button>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     name: "MySelect",
     data: function () {
             return {
-                musicGenre: null
+                musicGenre: "All"
             }        
         },
 }

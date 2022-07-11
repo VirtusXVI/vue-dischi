@@ -1,13 +1,13 @@
 <template>
   <div class="main-background">
     <div class="main-container">
-        <MySelect @filter="(musicGenre) => filteredSongs = this.generes.filter(genre => genre === musicGenre)"/>
+        <MySelect @filter="setActiveGenre"/>
         <div class="cards-container">
             <MusicCard 
-            :title="filteredSongs[index].title" 
-            :date="filteredSongs[index].year" 
-            :author="filteredSongs[index].author" 
-            :cover="filteredSongs[index].poster" 
+            :title="song.title" 
+            :date="song.year" 
+            :author="song.author" 
+            :cover="song.poster" 
             v-for="song,index in filteredSongs"
             :key="index"/>
         </div>
@@ -30,8 +30,16 @@
                 musicDatas: null,
                 musicGenre: null,
                 generes: [],
-                filteredSongs: null
+                activeGenre: "All"
             }        
+        },
+        computed:{
+            filteredSongs(){
+                if(this.activeGenre === "All"){
+                    return this.musicDatas;
+                }
+                return this.musicDatas.filter((item) => item.genre === this.activeGenre)
+            }
         },
         methods:{
             generateElements(){
@@ -39,10 +47,13 @@
                 .then((response) =>{
                     this.musicDatas = response.data.response;
                     for(let i = 0; i < this.musicDatas.length;i++){
-                        this.generes.push(this.musicDatas[i])
+                        this.generes.push(this.musicDatas)
                     }
                     console.log(this.generes[0]);
                 })
+            },
+            setActiveGenre(genre){
+                this.activeGenre = genre;
             }
         },
         mounted(){
